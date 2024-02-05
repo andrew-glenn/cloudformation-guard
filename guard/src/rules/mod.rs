@@ -23,7 +23,8 @@ use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
 use std::fmt::Formatter;
 use std::rc::Rc;
-
+// use serde_yaml::Location;
+use crate::rules::path_value::Location;
 pub(crate) type Result<R> = std::result::Result<R, Error>;
 
 lazy_static! {
@@ -167,6 +168,7 @@ pub(crate) struct UnResolved {
     pub(crate) traversed_to: Rc<PathAwareValue>,
     pub(crate) remaining_query: String,
     pub(crate) reason: Option<String>,
+    pub(crate) location: Location
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize)]

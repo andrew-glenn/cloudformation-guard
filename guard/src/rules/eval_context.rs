@@ -1,8 +1,5 @@
 use crate::rules::errors::Error;
-use crate::rules::exprs::{
-    AccessQuery, Block, Conjunctions, FunctionExpr, GuardClause, LetExpr, LetValue,
-    ParameterizedRule, QueryPart, Rule, RulesFile, SliceDisplay,
-};
+use crate::rules::exprs::{AccessQuery, Block, Conjunctions, FunctionExpr, GuardClause, LetExpr, LetValue, ParameterizedRule, QueryPart, Rule, RulesFile, SliceDisplay};
 use crate::rules::functions::collections::count;
 use crate::rules::functions::converters::{
     parse_bool, parse_char, parse_float, parse_int, parse_str,
@@ -129,7 +126,8 @@ fn retrieve_index(
                 reason: Some(
                     format!("Array Index out of bounds for path = {} on index = {} inside Array = {:?}, remaining query = {}",
                             parent.self_path(), index, elements, SliceDisplay(query))
-                )
+                ),
+                location: parent.self_path().1.clone()
             }
         )
     }
@@ -236,6 +234,7 @@ fn to_unresolved_value(
         traversed_to: Rc::clone(&current),
         reason: Some(reason),
         remaining_query: format!("{}", SliceDisplay(query)),
+        location: current.self_path().1.clone()
     })
 }
 

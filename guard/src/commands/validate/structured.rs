@@ -125,4 +125,8 @@ impl<'reporter> StructuredReporter for CommonStructuredReporter<'reporter> {
 
         Ok(self.exit_code)
     }
+
+    pub(crate) fn writeToSarif(&mut self){
+
+    }
 }

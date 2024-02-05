@@ -487,7 +487,7 @@ pub(super) fn print_compliant_skipped_info(
     data_file_name: &str,
 ) -> crate::rules::Result<()> {
     if !passed.is_empty() {
-        writeln!(writer, "--")?;
+        // writeln!(writer, "--")?;
     }
     for pass in passed {
         writeln!(
@@ -497,7 +497,7 @@ pub(super) fn print_compliant_skipped_info(
         )?;
     }
     if !skipped.is_empty() {
-        writeln!(writer, "--")?;
+        // writeln!(writer, "--")?;
     }
     for skip in skipped {
         writeln!(
@@ -694,7 +694,7 @@ pub(super) type PathTree<'report, 'value> =
     BTreeMap<String, Vec<std::rc::Rc<Node<'report, 'value>>>>;
 
 pub(super) fn insert_into_trees<'report, 'value: 'report>(
-    clause: &'report ClauseReport<'value>,
+    clause: &'report Claus  eReport<'value>,
     parent: std::rc::Rc<String>,
     path_tree: &mut PathTree<'report, 'value>,
     hierarchy: &mut RuleHierarchy<'report, 'value>,
